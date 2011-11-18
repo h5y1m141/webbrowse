@@ -1,3 +1,6 @@
 tmp
 build/**/*
-build/*
+build/iphone/*
+build/iphone/Resources/*
+build/iphone/Resources/build/*
+build/iphone/Resources/build/**/*
