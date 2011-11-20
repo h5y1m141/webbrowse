@@ -1,12 +1,5 @@
-// this sets the background color of the master UIView (when there are no windows/tab groups on it)
 Titanium.UI.setBackgroundColor('#FFF');
-
-// create tab group
 var tabGroup = Titanium.UI.createTabGroup();
-
-//
-// create base UI tab and root window
-//
 var win1 = Titanium.UI.createWindow({
    title:'簡易ブラウザ',
    backgroundColor:'#fff'
@@ -17,6 +10,7 @@ var tab1 = Titanium.UI.createTab({
     window:win1
 });
 
+// １．URLを入力できるテキストフィールドを準備
 var urlBox = Titanium.UI.createTextField({
   color:'#336699',
   top:10,
@@ -29,16 +23,15 @@ var urlBox = Titanium.UI.createTextField({
   autocapitalization: false,
   borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
-
 urlBox.addEventListener('blur',function(e){
   actInd.show();
   webView.url = e.value;
   webView.reload();
 
 });
-
 win1.add(urlBox);
 
+// ２．読み込み処理を中止するボタンを準備
 var stopBtn = Ti.UI.createButton({
   title:'stop',
   top:10,
@@ -53,22 +46,22 @@ stopBtn.addEventListener('click',function(e){
 });
 win1.add(stopBtn);
 
+// ３．HTMLコンテンツを表示するためのWebViewを準備
 var webView = Titanium.UI.createWebView({
   top:50,
   left:0,
   width:'auto',
   height:'auto'
 });
-
 webView.addEventListener('beforeload',function(e){
   actInd.show();
 });
 webView.addEventListener('load',function(e){
   actInd.hide();
 });
-
 win1.add(webView);
 
+// ４．「読み込み中」ということを示すためのActivityIndicatorを準備
 var actInd = Titanium.UI.createActivityIndicator({
   top:50,
   height:55,
@@ -84,11 +77,5 @@ var actInd = Titanium.UI.createActivityIndicator({
 });
 win1.add(actInd);
 
-//
-//  add tabs
-//
 tabGroup.addTab(tab1);
-
-
-// open tab group
 tabGroup.open();
