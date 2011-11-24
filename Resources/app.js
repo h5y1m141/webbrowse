@@ -9,7 +9,7 @@ var tab1 = Titanium.UI.createTab({
     title:'Tab 1',
     window:win1
 });
-/
+
 var webView = Titanium.UI.createWebView({
 });
 webView.html =
